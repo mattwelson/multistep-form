@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Ubuntu as SansFont } from "next/font/google";
 import "./globals.css";
+import { Provider } from "jotai";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const sansFont = SansFont({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -26,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${sansFont.variable} font-sans antialiased bg-page-background flex flex-col md:p-4`}
       >
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
