@@ -5,11 +5,8 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardFooter,
 } from "@/app/_components/card";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Link from "next/link";
 import iconThankYou from "@/app/images/icon-thank-you.svg";
 
 export function StepFive() {

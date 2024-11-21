@@ -8,7 +8,6 @@ import {
   CardFooter,
 } from "@/app/_components/card";
 import { confirmationAtom } from "@/app/_components/form/atoms";
-import { prices } from "@/app/_components/form/data";
 import { Button } from "@/components/ui/button";
 import { useAtomValue, type ExtractAtomValue } from "jotai";
 import Link from "next/link";
