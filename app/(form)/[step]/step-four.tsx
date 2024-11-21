@@ -14,41 +14,52 @@ import { useAtomValue, type ExtractAtomValue } from "jotai";
 import Link from "next/link";
 
 function PlanDetails({
-  confirmation: { plan, period },
+  confirmation: { plan, period, addOns },
 }: {
   confirmation: ExtractAtomValue<typeof confirmationAtom>;
 }) {
-  const price = prices.plans[plan.keyValue][period.keyValue];
   return (
-    <div className="flex items-center">
-      <div className="flex-1">
-        <div className="font-bold">
-          {plan.title} ({period.title})
+    <div>
+      <div className="flex items-center">
+        <div className="flex-1">
+          <div className="font-bold">
+            {plan.title} ({period.title})
+          </div>
+          <Link href="/2" className="text-muted-foreground underline">
+            Change
+          </Link>
         </div>
-        <Link href="/2" className="text-muted-foreground underline">
-          Change
-        </Link>
+        <div className="font-bold">
+          ${plan.price}/{period.abbreviation}
+        </div>
       </div>
-      <div className="font-bold">
-        ${price}/{period.abbreviation}
-      </div>
+      {!!addOns.length && <div className="h-px w-full bg-border my-2" />}
+      {addOns.map((addOn) => (
+        <div key={addOn.title} className="flex first-of-type:border-t py-1">
+          <div className="flex-1 text-muted-foreground">{addOn.title}</div>
+          <div>
+            +${addOn.price}/{period.abbreviation}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
 
 function TotalDetails() {
+  const confirmation = useAtomValue(confirmationAtom);
   return (
-    <div>
-      <div>Total (per month)</div>
-      <div>+$12/mo</div>
+    <div className="flex p-4 text-muted-foreground">
+      <div className="flex-1">Total ({confirmation.period.per})</div>
+      <div className="text-primary font-semibold">
+        +${confirmation.totalPrice}/mo
+      </div>
     </div>
   );
 }
 
 export function StepFour() {
   const confirmation = useAtomValue(confirmationAtom);
-
-  console.log({ confirmation });
 
   return (
     <CardContent>
@@ -58,18 +69,16 @@ export function StepFour() {
           Double-check everything looks OK before confirming.
         </CardDescription>
       </CardHeader>
-      <div className="p-4 bg-page-background">
+      <div className="p-4 bg-page-background rounded-md">
         <PlanDetails confirmation={confirmation} />
       </div>
       <TotalDetails />
       <CardFooter>
-        <div className="justify-self-end">
-          <Button type="submit" className="bg-primary">
-            Confirm
-          </Button>
-        </div>
+        <Button asChild className="bg-primary">
+          <Link href="/5">Confirm</Link>
+        </Button>
         <Button variant="link" asChild>
-          <Link href="/1">Go Back</Link>
+          <Link href="/3">Go Back</Link>
         </Button>
       </CardFooter>
     </CardContent>

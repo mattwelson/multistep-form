@@ -35,18 +35,35 @@ export function CardFooter({
   );
 }
 
-export function CardContent({ children }: { children: ReactNode }) {
+export function CardContent({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <div className="px-4">
-      <div className="flex flex-col relative bg-background rounded-lg p-4 px-6 z-10 mx-auto shadow-lg max-w-xl w-full md:shadow-none md:max-w-2xl md:min-h-full">
+      <div
+        className={cn(
+          "flex flex-col relative bg-background rounded-lg p-4 px-6 z-10 mx-auto shadow-lg max-w-xl w-full md:shadow-none md:max-w-2xl md:min-h-full",
+          className
+        )}
+      >
         {children}
       </div>
     </div>
   );
 }
 
-export function CardHeader({ children }: { children: ReactNode }) {
-  return <div className="space-y-2 my-4">{children}</div>;
+export function CardHeader({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={cn("space-y-2 my-4", className)}>{children}</div>;
 }
 
 export function CardTitle({ children }: { children: string }) {

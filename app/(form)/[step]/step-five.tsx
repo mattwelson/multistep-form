@@ -8,26 +8,22 @@ import {
   CardFooter,
 } from "@/app/_components/card";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
+import iconThankYou from "@/app/images/icon-thank-you.svg";
 
 export function StepFive() {
   return (
-    <CardContent>
-      <CardHeader>
-        <CardTitle>Personal info</CardTitle>
+    <CardContent className="py-16">
+      <CardHeader className="text-center flex flex-col items-center justify-center flex-1">
+        <Image src={iconThankYou} alt="" className="my-4" />
+        <CardTitle>Thank you!</CardTitle>
         <CardDescription>
-          Please provide your name, email address, and phone number.
+          Thanks for confirming your subscription! We hope you have fun using
+          our platform. If you ever need support, please feel free to email us
+          at support@loremgamin.com.
         </CardDescription>
       </CardHeader>
-      <div>Some form, name etc</div>
-      <CardFooter>
-        <div className="justify-self-end">
-          <Button type="submit">Next Step</Button>
-        </div>
-        <Button variant="link" asChild>
-          <Link href="/1">Go Back</Link>
-        </Button>
-      </CardFooter>
     </CardContent>
   );
 }

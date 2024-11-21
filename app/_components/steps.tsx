@@ -46,7 +46,7 @@ export function Step({
           "size-8 flex items-center justify-center rounded-full bg-transparent text-white border",
           {
             "bg-accent text-accent-foreground border-accent":
-              number === currentStep,
+              number === currentStep || (currentStep === 5 && number === 4),
           }
         )}
       >
